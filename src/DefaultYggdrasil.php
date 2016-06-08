@@ -121,6 +121,9 @@ class DefaultYggdrasil implements Yggdrasil {
         } else {
             $response = $this->httpClient->get($url, $options);
         }
+		if ($response->getStatusCode() == 204) {
+            return true;
+        }
         if( $response->getStatusCode() != 200 ) {
             $json = $response->json();
             $short = $json['error'];
