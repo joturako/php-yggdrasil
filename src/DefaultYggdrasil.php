@@ -186,7 +186,7 @@ class DefaultYggdrasil implements Yggdrasil {
 
         $this->accessToken = $response['accessToken'];
         $this->clientToken = $response['clientToken'];
-		return $reponse;
+		return $response;
     }
 
     function refresh()
