@@ -186,6 +186,7 @@ class DefaultYggdrasil implements Yggdrasil {
 
         $this->accessToken = $response['accessToken'];
         $this->clientToken = $response['clientToken'];
+		return $reponse;
     }
 
     function refresh()
@@ -202,6 +203,7 @@ class DefaultYggdrasil implements Yggdrasil {
 
         $this->accessToken = $response['accessToken'];
         $this->clientToken = $response['clientToken'];
+		return $reponse;
     }
 
     function validate()
@@ -209,7 +211,7 @@ class DefaultYggdrasil implements Yggdrasil {
         if($this->accessToken == null)
             throw new InvalidParameterException('Access token has not been set, cannot validate.');
 
-        $this->getAuthServerResponse('/validate', ['accessToken' => $this->accessToken]);
+        return $this->getAuthServerResponse('/validate', ['accessToken' => $this->accessToken]);
     }
 
     function signout($password)
@@ -219,7 +221,7 @@ class DefaultYggdrasil implements Yggdrasil {
         if($password == null)
             throw new InvalidParameterException('Password cannot be null when signout');
 
-        $this->getAuthServerResponse('/signout', [
+        return $this->getAuthServerResponse('/signout', [
             'username' => $this->username,
             'password' => $password
         ]);
@@ -232,7 +234,7 @@ class DefaultYggdrasil implements Yggdrasil {
         if ($this->accessToken == null)
             throw new InvalidParameterException('Access token has not been set, cannot invalidate.');
 
-        $this->getAuthServerResponse('/invalidate', [
+        return $this->getAuthServerResponse('/invalidate', [
             'clientToken' => $this->clientToken,
             'accessToken' => $this->accessToken
         ]);
